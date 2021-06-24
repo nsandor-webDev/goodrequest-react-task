@@ -1,8 +1,8 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import {StepOne} from './components/steps/StepOne';
-import {StepTwo} from './components/steps/StepTwo';
-import {TheSummary} from './components/steps/TheSummary';
+import {StepOne} from './components/form/steps/StepOne';
+import {StepTwo} from './components/form/steps/StepTwo';
+import {TheSummary} from './components/form/steps/TheSummary';
 import './App.css';
 
 function App() {
