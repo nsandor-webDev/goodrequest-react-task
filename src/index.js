@@ -1,19 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+
+// assets
+import './assets/css/normalize.css';
+import './assets/css/index.scss';
+import Background from './assets/img/bgdog.png'
+
+// components
+import {StepOne} from './components/form/steps/StepOne';
+import {StepTwo} from './components/form/steps/StepTwo';
+import {TheSummary} from './components/form/steps/TheSummary';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+    <Router>
+      <div className="wrapper">
+        <main>
+          <div className="form">
+            <Route exact path="/" component={StepOne} />
+            <Route exact path="/step-2" component={StepTwo} />
+            <Route exact path="/summary" component={TheSummary} />
+          </div>
+          <div className="form-picture">
+            <img src={Background} alt="" />
+          </div>
+        </main>
+      </div>
+    </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
