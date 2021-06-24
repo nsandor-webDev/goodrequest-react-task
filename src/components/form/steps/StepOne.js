@@ -85,40 +85,42 @@ export function StepOne() {
         </select> 
         <span className="arrow"></span>
       </div>
-        {/* Choose amount / set amount */}
-        <h2 className="subTitle">Suma, ktorou chcete prispieť</h2>
-        <div className="amountChoice">
-          <label>
-            <input type="radio" name="amount" value="5"  {...register('amount')} /> 
-            <span className="radioBtn">5 €</span>
-          </label>
-          <label>
-            <input type="radio" name="amount" value="10"   {...register('amount')} /> 
-            <span className="radioBtn">10 €</span>
-          </label>
-          <label>
-            <input type="radio" name="amount" value="20"   {...register('amount')} /> 
-            <span className="radioBtn">20 €</span>
-          </label>
-          <label>
-            <input type="radio" name="amount" value="30"   {...register('amount')} /> 
-            <span className="radioBtn">30 €</span>
-          </label>
-          <label>
-            <input type="radio" name="amount" value="50"   {...register('amount')} /> 
-            <span className="radioBtn">50 €</span>
-          </label>
-          <label>
-            <input type="radio" name="amount" value="100"   {...register('amount')} /> 
-            <span className="radioBtn">100 €</span>
-          </label>
-          {/* Set custom amount */}
-          <label onClick={handleLabelClick}>
-            <input type="radio" name="amount" id="customAmount"  {...register('amount')} /> 
-            <input type="text" name="amountCustom" onChange={handleInputChange} /> 
-          </label>
-        </div>
-      <button>Ďalej</button>
+      {/* Choose amount / set amount */}
+      <h2 className="subTitle">Suma, ktorou chcete prispieť</h2>
+      <div className="amountChoice">
+        <label>
+          <input type="radio" name="amount" value="5"  {...register('amount')} /> 
+          <span className="radioBtn">5 €</span>
+        </label>
+        <label>
+          <input type="radio" name="amount" value="10"   {...register('amount')} /> 
+          <span className="radioBtn">10 €</span>
+        </label>
+        <label>
+          <input type="radio" name="amount" value="20"   {...register('amount')} /> 
+          <span className="radioBtn">20 €</span>
+        </label>
+        <label>
+          <input type="radio" name="amount" value="30"   {...register('amount')} /> 
+          <span className="radioBtn">30 €</span>
+        </label>
+        <label>
+          <input type="radio" name="amount" value="50"   {...register('amount')} /> 
+          <span className="radioBtn">50 €</span>
+        </label>
+        <label>
+          <input type="radio" name="amount" value="100"   {...register('amount')} /> 
+          <span className="radioBtn">100 €</span>
+        </label>
+        {/* Set custom amount */}
+        <label onClick={handleLabelClick}>
+          <input type="radio" name="amount" id="customAmount"  {...register('amount')} /> 
+          <span className="radioBtn"><input type="text" name="amountCustom" onChange={handleInputChange} /> </span>
+        </label>
+      </div>
+     <div className="footer">
+      <button>Pokračovať</button>
+     </div>
     </form>
    </div>
   )
