@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const twoStepFormSlice = createSlice({
     name: 'twoStepForm',
     initialState: {
-        supportType: false,
+        donateDogShelter: false,
         dogShelter: "",
         amount: 5,
         name: "",
@@ -13,7 +13,7 @@ export const twoStepFormSlice = createSlice({
     },
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
-        toggleSupportType: state => { state.supportType = !state.supportType},
+        toggleSupportType: state => { state.donateDogShelter = !state.donateDogShelter},
         chooseShelter: (state, action) => { state.dogShelter = action.payload; },
         setAmount: (state, action) => { state.amount = action.payload },   
         setName: (state, action) => { state.name = action.payload },

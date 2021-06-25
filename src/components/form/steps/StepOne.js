@@ -15,10 +15,10 @@ export function StepOne() {
   const history = useHistory()
   
   // Forms data
-  const supportType = useSelector(state => state.supportType)
+  const donateDogShelter = useSelector(state => state.donateDogShelter)
   const dogShelter = useSelector(state => state.dogShelter)
   const amount = useSelector(state => state.amount)
-  const { register, handleSubmit } = useForm({ defaultValues: { supportType, dogShelter, amount} })
+  const { register, handleSubmit } = useForm({ defaultValues: { donateDogShelter, dogShelter, amount} })
     
   // On custom amoount label click - set custom radio option checked
   const handleLabelClick = (e) => {
@@ -42,6 +42,16 @@ export function StepOne() {
 
     history.push("./step-2")
   } 
+
+  const changeWallet = () => {
+    let icon = document.getElementById('wallet');
+    (icon.src === "http://localhost:3000" + WalletWhite && !donateDogShelter) ? icon.src = "http://localhost:3000" + Wallet : icon.src = "http://localhost:3000" + WalletWhite
+  }
+
+  const changePaw = () => {
+    let icon = document.getElementById('paw');
+    (icon.src === "http://localhost:3000" + PawWhite  && donateDogShelter) ? icon.src = "http://localhost:3000" + Paw : icon.src = "http://localhost:3000" + PawWhite
+  }
   
   return (
    <div className="step-one">
@@ -49,20 +59,21 @@ export function StepOne() {
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* Support type */}
       <div className="selectSupportType">
-        <label className="optionContainer">
-            <input type="radio" name="supportType" onChange={() => dispatch(toggleSupportType())} />
+        <label className="optionContainer" onMouseEnter={changeWallet} onMouseLeave={changeWallet}>
+            <input type="radio" name="donateDogShelter" onChange={() => dispatch(toggleSupportType())} />
             <div className="typeLabel"> 
               <span className="icon">
-                {(supportType) ? <img src={WalletWhite} alt='Wallet icon' /> : <img src={Wallet} alt='Wallet icon' />}
+                {(donateDogShelter) ? <img src={WalletWhite} alt='Wallet icon' id='wallet'/> 
+                               : <img src={Wallet} alt='Wallet icon' id='wallet'/>}
               </span>
               <h2>Chcem finančne prispieť konkrétnemu útulku </h2>
             </div>
         </label>
-        <label className="optionContainer">
-            <input type="radio" name="supportType"  onChange={() => dispatch(toggleSupportType())} defaultChecked/>
+        <label className="optionContainer" onMouseEnter={changePaw} onMouseLeave={changePaw}>
+            <input type="radio" name="donateDogShelter"  onChange={() => dispatch(toggleSupportType())} defaultChecked/>
             <div className="typeLabel right">
               <span className="icon">
-                {(supportType) ? <img src={Paw} alt='Wallet icon' /> : <img src={PawWhite} alt='Wallet icon' />}
+                {(donateDogShelter) ? <img src={Paw} alt='Paw icon' id='paw'/> : <img src={PawWhite} alt='Paw icon' id='paw'/>}
               </span>              <h2>Chcem finančne prispieť celej nadácii </h2>
             </div>
         </label>
@@ -72,13 +83,13 @@ export function StepOne() {
       <div className="shelterChoiceHeader">
         <h2 className="subTitle">O projekte</h2>
         <span className="required">
-          {supportType ? "Povinné" : "Nepovinné"}
+          {donateDogShelter ? "Povinné" : "Nepovinné"}
         </span>
       </div>
       <div className="shelterSelectBox">
-      <label for="dogShelter">Útulok</label>
-        <select id="dogShelter" name="dogShelter" defaultValue="" required={supportType} {...register('dogShelter')}> 
-            <option value="" disabled selected hidden> Vyberte útulok zo zoznamu</option>
+      <label htmlFor="dogShelter">Útulok</label>
+        <select id="dogShelter" name="dogShelter" defaultValue="" required={donateDogShelter} {...register('dogShelter')}> 
+            <option value="" disabled hidden> Vyberte útulok zo zoznamu</option>
             <option value="first">Prvý</option>
             <option value="second">Druhý</option>
             <option value="third">Tretí</option>
