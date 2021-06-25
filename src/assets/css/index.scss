@@ -33,16 +33,15 @@ body {
 /* ==================== */
 /* ==== GENERAL CSS === */
 /* ==================== */
+// Main title
+h1 {
+  font-family: 'Hind', sans-serif;
+  font-size: 2.875em;
+  letter-spacing: 0.01em;
+  color: #000;
+}
 // CSS for component StepOne
 .step-one {
-  // Main title
-  h1 {
-    font-family: 'Hind', sans-serif;
-    font-size: 2.875em;
-    letter-spacing: 0.01em;
-    color: #000;
-  }
-
   // Radio input element for donate type choice
   .selectSupportType {
     display: flex;
@@ -58,18 +57,19 @@ body {
       flex-grow: 1;
     }
   }
-
-  .footer {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-  }
-
+  
   // Select donation amount / set custom amount
   .amountChoice {
     display: flex;
     justify-content: flex-start;
     justify-content: space-between;
+  }
+
+  // Submit button - next step
+  .footer {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
   }
 }
 
@@ -156,17 +156,17 @@ body {
 }
 
 // Select element for dogshelter choice
+// Title + required information
 .shelterChoiceHeader {
   h2 {
     font-size: 1em;
   }
-  
   .required {
     text-align: right;
     font-size: .875em;
   }
 }
-
+// select
 .shelterSelectBox {
   position: relative;
   & label {
@@ -202,9 +202,9 @@ body {
   }
 }
 
-
+// Radio buttons - Set donation amount
 .amountChoice {
-  margin: 2em 0 4.25em 0;
+  margin-bottom: 4.25em;
   label {
     position: relative;
     -webkit-user-select: none;
@@ -216,17 +216,22 @@ body {
     &:last-child {
       margin-right: 0;
     }
-    & input {
+    & input[type='radio'] {
       position: absolute;
       opacity: 0;
       cursor: pointer;
       height: 0;
       width: 0;
     }
-    .radioBtn {
+
+    .radioBtn,
+    input[type="text"] {
       font-family: 'Public Sans', sans-serif;
       font-size: 1em;
       font-weight: 800;
+    }
+
+    .radioBtn {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -236,14 +241,32 @@ body {
       border-radius: .5em;
     }
     &:hover input ~ .radioBtn,
-    & input:checked ~ .radioBtn {
+    & input[type='radio']:checked ~ .radioBtn,
+    & input[type='radio']:checked ~ .radioBtn input[type="text"] {
       background: linear-gradient(115.41deg, #CD8A64 -1.77%, #C4794F 73.03%);
       color: #FFF;
       border-color: transparent;
     }
+
+    & input[type='radio']:checked ~ .radioBtn input[type="text"] {
+      border-bottom: 0.08em solid #C9C9C9;
+    }
+
+    & input[type="text"] {
+      padding: .2em 0 0.185em 0;
+      border: 0;
+      border-bottom: 0.08em solid #C9C9C9;
+      background-color: #fff;
+      background-color: transparent;
+      width: 60%;
+      &:focus {
+        outline: none;
+      }
+    }
   }
 }
 
+// Submit button - Next step
 .footer button {
   font-family: 'Public Sans', sans-serif;
   font-size: 1.125em;
@@ -257,5 +280,13 @@ body {
   cursor: pointer;
   &:hover {
     background:linear-gradient(115.41deg, #CD8A64 -10.77%, #C4794F 23.03%);
+  }
+}
+
+
+// CSS for step two 
+.step-two {
+  form {
+    margin-top: 2.85em;
   }
 }

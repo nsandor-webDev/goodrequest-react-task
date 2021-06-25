@@ -126,7 +126,7 @@ export function StepOne() {
         {/* Set custom amount */}
         <label onClick={handleLabelClick}>
           <input type="radio" name="amount" id="customAmount"  {...register('amount')} /> 
-          <span className="radioBtn"><input type="text" name="amountCustom" onChange={handleInputChange} /> </span>
+          <span className="radioBtn"><input type="text" name="amountCustom" onChange={handleInputChange} /> €</span>
         </label>
       </div>
      <div className="footer">

@@ -23,24 +23,24 @@ export const StepTwo= () => {
   } 
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="name">Meno</label>
-        <input type="text" id="name" name="name" {...register('name')}/>
-      </div>
-      <div>
-        <label htmlFor="surname">Priezvisko</label>
-        <input type="text" id="surname" name="surname" {...register('surname')}/>
-      </div>
-      <div>
-        <label htmlFor="email">E-mailová adresa</label>
-        <input type="text" id="email" name="email" {...register('email')}/>
-      </div>
-      <div>
-        <label htmlFor="phone">Telefónne číslo</label>
-        <input type="text" id="phone" name="phone" {...register('phone')}/>
-      </div>
-      <button>Ďalej</button>
-    </form>
+    <div className="step-two">
+      <h1>Potrebujeme od Vás zopár informácií</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h2 className="subTitle">O vás</h2>
+          <label>Meno 
+            <input type="text" id="name" name="name" {...register('name')}/>
+          </label>
+          <label>Priezvisko 
+            <input type="text" id="surname" name="surname" {...register('surname')}/>
+          </label>
+          <label>E-mailová adresa 
+            <input type="text" id="email" name="email" {...register('email')}/>
+          </label>
+          <label>Telefónne číslo 
+            <input type="text" id="phone" name="phone" {...register('phone')}/>
+          </label>
+        <button>Ďalej</button>
+      </form>
+    </div>
   )
 }
