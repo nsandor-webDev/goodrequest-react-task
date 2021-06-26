@@ -14,6 +14,7 @@ import Background from './assets/img/bgdog.png'
 import {StepOne} from './components/form/steps/StepOne';
 import {StepTwo} from './components/form/steps/StepTwo';
 import {TheSummary} from './components/form/steps/TheSummary';
+import {TheFooter} from './components/TheFooter'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -30,6 +31,7 @@ ReactDOM.render(
             <img src={Background} alt="" />
           </div>
         </main>
+        <TheFooter />
       </div>
     </Router>
     </Provider>

@@ -52,19 +52,18 @@ export function StepOne() {
     let icon = document.getElementById('paw');
     (icon.src === "http://localhost:3000" + PawWhite  && donateDogShelter) ? icon.src = "http://localhost:3000" + Paw : icon.src = "http://localhost:3000" + PawWhite
   }
-  
+
   return (
-   <div className="step-one">
+   <div>
     <h1>Vyberte možnosť, ako chcete pomôcť</h1>
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* Support type */}
-      <div className="selectSupportType">
+      <div className="chooseType">
         <label className="optionContainer" onMouseEnter={changeWallet} onMouseLeave={changeWallet}>
             <input type="radio" name="donateDogShelter" onChange={() => dispatch(toggleSupportType())} />
             <div className="typeLabel"> 
               <span className="icon">
-                {(donateDogShelter) ? <img src={WalletWhite} alt='Wallet icon' id='wallet'/> 
-                               : <img src={Wallet} alt='Wallet icon' id='wallet'/>}
+                {(donateDogShelter) ? <img src={WalletWhite} alt='Wallet icon' id='wallet'/> : <img src={Wallet} alt='Wallet icon' id='wallet'/>}
               </span>
               <h2>Chcem finančne prispieť konkrétnemu útulku </h2>
             </div>
@@ -74,19 +73,20 @@ export function StepOne() {
             <div className="typeLabel right">
               <span className="icon">
                 {(donateDogShelter) ? <img src={Paw} alt='Paw icon' id='paw'/> : <img src={PawWhite} alt='Paw icon' id='paw'/>}
-              </span>              <h2>Chcem finančne prispieť celej nadácii </h2>
+              </span> 
+              <h2>Chcem finančne prispieť celej nadácii</h2>
             </div>
         </label>
       </div>
 
       {/* Choose shelter */}
-      <div className="shelterChoiceHeader">
+      <div className="meta-info">
         <h2 className="subTitle">O projekte</h2>
         <span className="required">
           {donateDogShelter ? "Povinné" : "Nepovinné"}
         </span>
       </div>
-      <div className="shelterSelectBox">
+      <div className="chooseShelter">
       <label htmlFor="dogShelter">Útulok</label>
         <select id="dogShelter" name="dogShelter" defaultValue="" required={donateDogShelter} {...register('dogShelter')}> 
             <option value="" disabled hidden> Vyberte útulok zo zoznamu</option>
@@ -98,7 +98,7 @@ export function StepOne() {
       </div>
       {/* Choose amount / set amount */}
       <h2 className="subTitle">Suma, ktorou chcete prispieť</h2>
-      <div className="amountChoice">
+      <div className="chooseAmount">
         <label>
           <input type="radio" name="amount" value="5"  {...register('amount')} /> 
           <span className="radioBtn">5 €</span>
@@ -129,9 +129,9 @@ export function StepOne() {
           <span className="radioBtn"><input type="text" name="amountCustom" onChange={handleInputChange} /> €</span>
         </label>
       </div>
-     <div className="footer">
-      <button>Pokračovať</button>
-     </div>
+      <div className="button-group">
+        <button>Pokračovať</button>
+      </div>
     </form>
    </div>
   )

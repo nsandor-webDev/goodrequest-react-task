@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { setEmail, setName, setPhone, setSurname } from '../../../features/formSlice'
 
@@ -23,23 +23,32 @@ export const StepTwo= () => {
   } 
 
   return (
-    <div className="step-two">
+    <div>
       <h1>Potrebujeme od Vás zopár informácií</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h2 className="subTitle">O vás</h2>
-          <label>Meno 
-            <input type="text" id="name" name="name" {...register('name')}/>
+        <div className="meta-data">
+          <label> 
+            <span>Meno</span>  
+            <input type="text" id="name" name="name" {...register('name')} placeholder="Zadajte Vaše meno"/>
           </label>
-          <label>Priezvisko 
-            <input type="text" id="surname" name="surname" {...register('surname')}/>
+          <label> 
+            <span>Priezvisko</span>  
+            <input type="text" id="surname" name="surname" {...register('surname')} placeholder="Zadajte Vaše priezvisko"/>
           </label>
-          <label>E-mailová adresa 
-            <input type="text" id="email" name="email" {...register('email')}/>
+          <label> 
+            <span>E-mailová adresa</span>  
+            <input type="text" id="email" name="email" {...register('email')} placeholder="Zadajte Váš e-mail"/>
           </label>
-          <label>Telefónne číslo 
-            <input type="text" id="phone" name="phone" {...register('phone')}/>
+          <label> 
+            <span>Telefónne číslo </span> 
+            <input type="text" id="phone" name="phone" {...register('phone')} placeholder="+421"/>
           </label>
-        <button>Ďalej</button>
+        </div>
+        <div className="button-group">
+        <Link to="/" className="back-btn">Späť</Link>
+        <button>Pokračovať</button>
+      </div>
       </form>
     </div>
   )

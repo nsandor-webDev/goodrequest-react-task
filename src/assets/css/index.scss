@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@700&family=Public+Sans:wght@400;600;800&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -9,6 +10,7 @@ body {
   background-color: #FFF;
 }
 
+// Layout
 .wrapper {
   width: 100%;
   max-width: 60em;
@@ -30,9 +32,6 @@ body {
   }
 }
 
-/* ==================== */
-/* ==== GENERAL CSS === */
-/* ==================== */
 // Main title
 h1 {
   font-family: 'Hind', sans-serif;
@@ -40,53 +39,12 @@ h1 {
   letter-spacing: 0.01em;
   color: #000;
 }
-// CSS for component StepOne
-.step-one {
-  // Radio input element for donate type choice
-  .selectSupportType {
-    display: flex;
-    margin-bottom: 3em;
-  }
 
-  // Select element for dogshelter choice
-  .shelterChoiceHeader {
-    display: flex;
-    justify-content: baseline;
-    align-items: baseline;
-    & > * {
-      flex-grow: 1;
-    }
-  }
-  
-  // Select donation amount / set custom amount
-  .amountChoice {
-    display: flex;
-    justify-content: flex-start;
-    justify-content: space-between;
-  }
-
-  // Submit button - next step
-  .footer {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-  }
-}
-
-.subTitle,
-.shelterChoiceHeader .required {
-  font-size: 1em;
-  font-family: 'Public Sans', sans-serif;
-  line-height: 1.185em;
-  font-weight: 800;
-  color: #2F2F2F;
-}
-
-/* ================== */
-/* === CUSTOM CSS === */
-/* ================== */
-// Select element for donate type choice
-.selectSupportType .optionContainer {
+// Radio input element for donate type choice - BOOLEAN
+.chooseType {
+  display: flex;
+  margin-bottom: 3em;
+  & .optionContainer {
     display: block;
     cursor: pointer;
     -webkit-user-select: none;
@@ -109,7 +67,6 @@ h1 {
       box-sizing: border-box;
       background-color: #FaF9F9;
       border-right: 0.0625em solid #CD8B65;
-      // Border radius
       border-top-left-radius: 1.5em;
       border-bottom-left-radius: 1.5em;
       border-top-right-radius: 0;
@@ -153,21 +110,37 @@ h1 {
     & input:checked ~ .typeLabel h2 {
       color: #FFF;
     }
+  }
 }
 
 // Select element for dogshelter choice
-// Title + required information
-.shelterChoiceHeader {
-  h2 {
-    font-size: 1em;
-  }
-  .required {
-    text-align: right;
-    font-size: .875em;
+.meta-info {
+  display: flex;
+  justify-content: baseline;
+  align-items: baseline;
+  & > * {
+    flex-grow: 1;
   }
 }
+
+// Subtitle and required information
+.subTitle,
+.required {
+  font-size: 1em;
+  font-family: 'Public Sans', sans-serif;
+  line-height: 1.185em;
+  font-weight: 800;
+  color: #2F2F2F;
+}
+
+.required {
+  text-align: right;
+  font-size: .875em;
+}
+ 
+
 // select
-.shelterSelectBox {
+.chooseShelter {
   position: relative;
   & label {
     position: absolute;
@@ -179,6 +152,7 @@ h1 {
     color: #2F2F2F;
   }
   & select {
+    box-sizing: border-box;
     font-family: 'Public Sans', sans-serif;
     font-weight: 400;
     appearance: none;
@@ -196,14 +170,18 @@ h1 {
     background-repeat: no-repeat;
     cursor: pointer;
   }
+
   & select:focus, 
   & select:focus option {
     outline: none;
   }
 }
 
-// Radio buttons - Set donation amount
-.amountChoice {
+// Select donation amount / set custom amount
+.chooseAmount {
+  display: flex;
+  justify-content: flex-start;
+  justify-content: space-between;
   margin-bottom: 4.25em;
   label {
     position: relative;
@@ -235,11 +213,12 @@ h1 {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 3.75em;
-      height: 3.75em;
+      min-width: 3.75em;
+      min-height: 3.75em;
       border: 0.185em solid #DFDFDF;
       border-radius: .5em;
     }
+
     &:hover input ~ .radioBtn,
     & input[type='radio']:checked ~ .radioBtn,
     & input[type='radio']:checked ~ .radioBtn input[type="text"] {
@@ -248,45 +227,177 @@ h1 {
       border-color: transparent;
     }
 
-    & input[type='radio']:checked ~ .radioBtn input[type="text"] {
-      border-bottom: 0.08em solid #C9C9C9;
-    }
-
     & input[type="text"] {
-      padding: .2em 0 0.185em 0;
+      padding: .2em 0 .185em 0;
+      margin: 0 .3em;
+      text-align: center;
       border: 0;
-      border-bottom: 0.08em solid #C9C9C9;
+      border-bottom: .08em solid #C9C9C9;
       background-color: #fff;
       background-color: transparent;
-      width: 60%;
+      width: 2.5em;
       &:focus {
         outline: none;
       }
     }
+
+    & input[type='radio']:checked ~ .radioBtn input[type="text"] {
+      border-bottom: 0.08em solid #C9C9C9;
+    }
   }
 }
 
-// Submit button - Next step
-.footer button {
-  font-family: 'Public Sans', sans-serif;
-  font-size: 1.125em;
-  font-weight: 800;
-  padding: 1.25em 1.5em;
-  border-radius: 6.125em;
-  border: none;
-  background: linear-gradient(115.41deg, #CD8A64 -1.77%, #C4794F 73.03%);
-  box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
-  color: #FFF;
-  cursor: pointer;
-  &:hover {
-    background:linear-gradient(115.41deg, #CD8A64 -10.77%, #C4794F 23.03%);
+// Submit button - next / prev  step
+.button-group {
+  width: 100%;
+  .back-btn, button {
+    font-family: 'Public Sans', sans-serif;
+    font-size: 1.125em;
+    font-weight: 800;
+    padding: 1.25em 1.5em;
+    border-radius: 6.125em;
+    border: none;
+    cursor: pointer;
+  }
+
+  .back-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #F3E2D9;
+    color: #2F2F2F; 
+    &:hover {
+      background: darken(#F3E2D9, 3%);
+      box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+    }
+  }
+
+  button {
+    float: right;
+    background: linear-gradient(115.41deg, #CD8A64 -1.77%, #C4794F 73.03%);
+    color: #FFF; 
+    &:hover {
+      background:linear-gradient(115.41deg, #CD8A64 -10.77%, #C4794F 23.03%);
+      box-shadow: 0px 100px 80px rgba(0, 0, 0, 0.07), 0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198), 0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275), 0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035), 0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725), 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802);
+    }
   }
 }
 
+.meta-data {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 
-// CSS for step two 
-.step-two {
-  form {
-    margin-top: 2.85em;
+  label {
+    position: relative;
   }
+
+  & input[type="text"] {
+    box-sizing: border-box;
+    font-family: 'Public Sans', sans-serif;
+    font-weight: 400;
+    appearance: none;
+    padding: 2.085em 1.5em 1em 1.5em;
+    margin-bottom: 1.875em;
+    width: 100%;
+    color: #000;
+    border: .185em solid #DFDFDF;
+    border-radius: .5em;
+    background-color: #FFF;
+    &::placeholder {
+      color: #9F9F9F;
+    }
+  }
+
+  & input[type="text"]:focus  {
+    outline: none;
+    border: .185em solid #CD8B65;
+  }
+
+  span {
+    position: absolute;
+    top: 1em;
+    left: 1.5em;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 1em;
+    font-weight: 800;
+    color: #2F2F2F;
+  }
+}
+
+.summary {
+  margin-bottom: 4em;
+  h2.subTitle {
+    font-size: 0.875em;
+  }
+  p {
+    font-size: 1em;
+    margin: 0;
+    margin-bottom: 1em;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    margin-top: 3em;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    .checkmark {
+      height: 2.185em;
+      width: 2.185em;
+      background-color: #FFF;
+      border: .158em solid #F3E2D9;
+      border-radius: .5em;
+    }
+
+    &:hover ~ .checkmark {
+      background-color: red;
+    }
+
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+
+    & input:checked ~ .checkmark:after {
+      display: block;
+    }
+
+    & .checkmark:after {
+      left: 1em;
+      top: .45em;
+      width: .65em;
+      height: 1.3em;
+      border: solid #AB7455;
+      box-sizing: border-box;
+      border-width: 0 .22em .22em 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    .agreementText {
+      font-family: 'Public Sans', sans-serif;
+      margin-left: .75em;
+      color: #2F2F2F;
+    }
+  }
+
+  // fajka AB7455
+  // border F3E2D9 .5em
 }
