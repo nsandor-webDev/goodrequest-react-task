@@ -32,6 +32,23 @@ body {
   }
 }
 
+.pagination {
+  padding: 1em 0;
+  height: 1em;
+  span {
+    display: inline-block;
+    height: 0.425em;
+    background-color:  #9F9F9F;
+    width: 1.55em;
+    border-radius: 1.25em;
+    margin-right: .425em;
+    &.active {
+      background: linear-gradient(94.75deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0) 100.7%), #CD8B65;
+      width: 2.325em;
+    }
+  }
+}
+
 // Main title
 h1 {
   font-family: 'Hind', sans-serif;
@@ -440,7 +457,7 @@ footer {
   .about-us,
   .useful-info {
     font-family: 'Public Sans', sans-serif;
-    font-size: 1.2em;
+    font-size: 1em;
     padding-right: .875em;
     color: #585757;
   }

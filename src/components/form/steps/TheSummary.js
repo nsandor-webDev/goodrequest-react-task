@@ -18,6 +18,11 @@ export const TheSummary = () => {
 
   return (
     <div>
+     <div className="pagination">
+       <span></span>
+       <span></span>
+       <span className="active"></span>
+     </div>
       <h1>Potrebujeme od Vás zopár informácií</h1>
         <div className="summary">
           <h2 className="subTitle">Akou formou chcem pomôcť</h2>

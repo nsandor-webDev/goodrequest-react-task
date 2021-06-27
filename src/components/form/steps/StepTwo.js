@@ -24,6 +24,11 @@ export const StepTwo= () => {
 
   return (
     <div>
+      <div className="pagination">
+       <span></span>
+       <span className="active"></span>
+       <span></span>
+     </div>
       <h1>Potrebujeme od Vás zopár informácií</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h2 className="subTitle">O vás</h2>

@@ -55,6 +55,11 @@ export function StepOne() {
 
   return (
    <div>
+     <div className="pagination">
+       <span className="active"></span>
+       <span></span>
+       <span></span>
+     </div>
     <h1>Vyberte možnosť, ako chcete pomôcť</h1>
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* Support type */}
