@@ -7,6 +7,7 @@ export const TheSummary = () => {
   let state = {...useSelector(state => state)}
   delete state.donateDogShelter
   delete state.shelterName
+  state.shelterID = parseInt(state.shelterID)
   const type = useSelector((state) => state.donateDogShelter)
   const shelterName = useSelector((state) => state.shelterName)
   const value = useSelector((state) => state.value)
@@ -19,18 +20,17 @@ export const TheSummary = () => {
     'content-type': 'application/json'
  }
   
+ /* "shelterID": state.shelterID,
+ "value": state.value,
+ "firstName": state.firstName,
+ "lastName": state.lastName,
+ "email": state.email,
+ "phone": state.phone */
 
   const onSubmit = () => {
     console.log(state)
     axios.post('https://frontend-assignment-api.goodrequest.com/api/v1/shelters/contribute',
-      {
-        "shelterID": state.shelterID,
-        "value": state.value,
-        "firstName": state.firstName,
-        "lastName": state.lastName,
-        "email": state.email,
-        "phone": state.phone
-      }, headers
+     state, headers
     )
     .then((response) => {
       console.log(response);
