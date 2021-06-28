@@ -2,21 +2,21 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
-import { setEmail, setName, setPhone, setSurname } from '../../../features/formSlice'
+import { setEmail, setFirstName, setPhone, setLastName } from '../../../features/formSlice'
 
 export const StepTwo= () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const name = useSelector(state => state.name)
-  const surname = useSelector(state => state.surname)
+  const firstName = useSelector(state => state.firstName)
+  const lastName = useSelector(state => state.lastName)
   const email = useSelector(state => state.email)
   const phone = useSelector(state => state.phone)
-  const { register, handleSubmit } = useForm({ defaultValues: { name, surname, email, phone } })
+  const { register, handleSubmit } = useForm({ defaultValues: { firstName, lastName, email, phone } })
 
   const onSubmit = (data) => {
-    dispatch(setName(data.name))
-    dispatch(setSurname(data.surname))
+    dispatch(setFirstName(data.firstName))
+    dispatch(setLastName(data.lastName))
     dispatch(setEmail(data.email))
     dispatch(setPhone(data.phone))
     history.push("./summary")
@@ -35,11 +35,11 @@ export const StepTwo= () => {
         <div className="meta-data">
           <label> 
             <span>Meno</span>  
-            <input type="text" id="name" name="name" {...register('name')} placeholder="Zadajte Vaše meno"/>
+            <input type="text" id="firstName" name="firstName" {...register('firstName')} placeholder="Zadajte Vaše meno"/>
           </label>
           <label> 
             <span>Priezvisko</span>  
-            <input type="text" id="surname" name="surname" {...register('surname')} placeholder="Zadajte Vaše priezvisko"/>
+            <input type="text" id="lastName" name="lastName" {...register('lastName')} placeholder="Zadajte Vaše priezvisko"/>
           </label>
           <label> 
             <span>E-mailová adresa</span>  

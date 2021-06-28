@@ -3,10 +3,15 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 export const TheSummary = () => {
+  let state = {...useSelector(state => state)}
+  delete state.donateDogShelter
+  delete state.shelterName
   const type = useSelector((state) => state.donateDogShelter)
-  const shelter = useSelector((state) => state.dogShelter)
-  const amount = useSelector((state) => state.amount)
-  const fullname = useSelector((state) => state.name) + " " + useSelector((state) => state.surname)
+  const shelterName = useSelector((state) => state.shelterName)
+  const value = useSelector((state) => state.value)
+  const firstName = useSelector((state) => state.firstName) + " " + useSelector((state) => state.firstName)
+  const lastName = useSelector((state) => state.lastName) + " " + useSelector((state) => state.lastName)
+  const fullName = firstName + " " + lastName
   const email = useSelector((state) => state.email)
   const phone = useSelector((state) => state.phone)
   
@@ -29,13 +34,13 @@ export const TheSummary = () => {
           <p>{type ? "Chcem finančne prispieť konkrétnemu útulku" : "Chcem finančne prispieť celej nadácii"}</p>
           
           <h2 className="subTitle">Najviac mi záleží na útulku</h2>
-          <p>{(shelter.length !== 0) ? shelter : 'Nevybral som žiadny útulok'}</p>
+          <p>{(shelterName !== "") ? shelterName : 'Nevybral som žiadny útulok'}</p>
           
           <h2 className="subTitle">Suma, ktorou chcem pomôcť</h2>
-          <p>{amount}</p>
+          <p>{value} €</p>
           
           <h2 className="subTitle">Meno a priezvisko</h2>
-          <p>{fullname}</p>
+          <p>{fullName}</p>
 
           <h2 className="subTitle">E-mailová adresa</h2>
           <p>{email}</p>
@@ -56,7 +61,7 @@ export const TheSummary = () => {
           <button onClick={onSubmit}>Odoslať formulár</button>
         </div>
 
-      {/* <pre>{JSON.stringify(state, null, 2)}</pre> */}
+      <pre>{JSON.stringify(state, null, 2)}</pre>
     
     </div>
   )

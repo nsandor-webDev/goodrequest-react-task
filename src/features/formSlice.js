@@ -4,20 +4,22 @@ export const twoStepFormSlice = createSlice({
     name: 'twoStepForm',
     initialState: {
         donateDogShelter: false,
-        dogShelter: "",
-        amount: 5,
-        name: "",
-        surname: "",
+        shelterName: "",
+        shelterID: 0,
+        value: 0,
+        firstName: "",
+        lastName: "",
         email: "",
         phone: ""
     },
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
         toggleSupportType: state => { state.donateDogShelter = !state.donateDogShelter},
-        chooseShelter: (state, action) => { state.dogShelter = action.payload; },
-        setAmount: (state, action) => { state.amount = action.payload },   
-        setName: (state, action) => { state.name = action.payload },
-        setSurname: (state, action) => { state.surname = action.payload },  
+        chooseShelter: (state, action) => { state.shelterName = action.payload; },
+        setShelterID: (state, action) => { state.shelterID = action.payload; },
+        setValue: (state, action) => { state.value = action.payload },   
+        setFirstName: (state, action) => { state.firstName = action.payload },
+        setLastName: (state, action) => { state.lastName = action.payload },  
         setEmail: (state, action) => { state.email = action.payload },
         setPhone: (state, action) => { state.phone = action.payload }
     }
@@ -25,4 +27,4 @@ export const twoStepFormSlice = createSlice({
 
   export const reducer = twoStepFormSlice.reducer
 
-  export const {toggleSupportType, chooseShelter, setAmount, setName, setSurname, setEmail, setPhone} = twoStepFormSlice.actions
+  export const {toggleSupportType, chooseShelter, setShelterID, setValue, setFirstName, setLastName, setEmail, setPhone} = twoStepFormSlice.actions

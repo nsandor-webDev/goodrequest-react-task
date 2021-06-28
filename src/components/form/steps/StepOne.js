@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { useForm} from 'react-hook-form'
-import { toggleSupportType, setAmount, chooseShelter } from '../../../features/formSlice'
+import { useForm } from 'react-hook-form'
+import { toggleSupportType, setValue, chooseShelter, setShelterID } from '../../../features/formSlice'
+import axios from "axios";
+
 
 //assets
 import Wallet from '../../../assets/icons/wallet.svg'
@@ -11,34 +13,53 @@ import PawWhite from '../../../assets/icons/paw-white.svg'
 import Paw from '../../../assets/icons/paw.svg'
 
 export function StepOne() {
+
+  const [users, setUsers] = useState([]);
+
+  // https://frontend-assignment-api.goodrequest.com/api/v1/shelters
+ 
+  useEffect(() => {
+    axios("https://frontend-assignment-api.goodrequest.com/api/v1/shelters")
+    .then((response) => {
+      setUsers(response.data.shelters)
+    })
+  }, [])
+
+  // API end point - Get shelters
+  //console.log(users)
   const dispatch = useDispatch()
   const history = useHistory()
   
   // Forms data
   const donateDogShelter = useSelector(state => state.donateDogShelter)
-  const dogShelter = useSelector(state => state.dogShelter)
-  const amount = useSelector(state => state.amount)
-  const { register, handleSubmit } = useForm({ defaultValues: { donateDogShelter, dogShelter, amount} })
+  const shelterName = useSelector(state => state.shelterName)
+  const value = useSelector(state => state.value)
+  const { register, handleSubmit } = useForm({ defaultValues: { donateDogShelter, shelterName, value} })
     
   // On custom amoount label click - set custom radio option checked
   const handleLabelClick = (e) => {
-    let customAmountRadio=document.getElementById('customAmount');
+    let customAmountRadio=document.getElementById('customInput');
     customAmountRadio.checked=true;
   }
 
   // When input text field changed
   // get value from text field and set to radio button
   const handleInputChange = e => {
-    document.getElementById('customAmount').value = e.target.value
+    document.getElementById('customInput').value = e.target.value
+  };
+
+  const handleChange = (e) => {
+    const selectedIndex = e.target.options.selectedIndex;
+    dispatch(setShelterID(e.target.options[selectedIndex].getAttribute('data-key')))
   };
   
 
   const onSubmit = (data) => {
-    let customAmount = document.getElementById('customAmount').value;
+    let customValue = document.getElementById('customInput').value;
 
-    dispatch(chooseShelter(data.dogShelter))
-    if (customAmount !== "on") dispatch(setAmount(customAmount)) 
-    else dispatch(setAmount(data.amount))
+    dispatch(chooseShelter(data.shelterName))
+    if (customValue !== "on") dispatch(setValue(customValue)) 
+    else dispatch(setValue(data.value))
 
     history.push("./step-2")
   } 
@@ -93,11 +114,9 @@ export function StepOne() {
       </div>
       <div className="chooseShelter">
       <label htmlFor="dogShelter">Útulok</label>
-        <select id="dogShelter" name="dogShelter" defaultValue="" required={donateDogShelter} {...register('dogShelter')}> 
+        <select id="shelterName" name="shelterName" defaultValue="" required={donateDogShelter} {...register('shelterName')} onChange={ (e) => handleChange(e)}> 
             <option value="" disabled hidden> Vyberte útulok zo zoznamu</option>
-            <option value="first">Prvý</option>
-            <option value="second">Druhý</option>
-            <option value="third">Tretí</option>
+          {users.map(user => <option value={user.name} key={user.id} data-key={user.id}>{user.name}</option>)}
         </select> 
         <span className="arrow"></span>
       </div>
@@ -105,33 +124,33 @@ export function StepOne() {
       <h2 className="subTitle">Suma, ktorou chcete prispieť</h2>
       <div className="chooseAmount">
         <label>
-          <input type="radio" name="amount" value="5"  {...register('amount')} /> 
+          <input type="radio" name="value" value="5"  {...register('value')} /> 
           <span className="radioBtn">5 €</span>
         </label>
         <label>
-          <input type="radio" name="amount" value="10"   {...register('amount')} /> 
+          <input type="radio" name="value" value="10"   {...register('value')} /> 
           <span className="radioBtn">10 €</span>
         </label>
         <label>
-          <input type="radio" name="amount" value="20"   {...register('amount')} /> 
+          <input type="radio" name="value" value="20"   {...register('value')} /> 
           <span className="radioBtn">20 €</span>
         </label>
         <label>
-          <input type="radio" name="amount" value="30"   {...register('amount')} /> 
+          <input type="radio" name="value" value="30"   {...register('value')} /> 
           <span className="radioBtn">30 €</span>
         </label>
         <label>
-          <input type="radio" name="amount" value="50"   {...register('amount')} /> 
+          <input type="radio" name="value" value="50"   {...register('value')} /> 
           <span className="radioBtn">50 €</span>
         </label>
         <label>
-          <input type="radio" name="amount" value="100"   {...register('amount')} /> 
+          <input type="radio" name="value" value="100"   {...register('value')} /> 
           <span className="radioBtn">100 €</span>
         </label>
-        {/* Set custom amount */}
+        {/* Set custom value */}
         <label onClick={handleLabelClick}>
-          <input type="radio" name="amount" id="customAmount"  {...register('amount')} /> 
-          <span className="radioBtn"><input type="text" name="amountCustom" onChange={handleInputChange} /> €</span>
+          <input type="radio" name="value" id="customInput"  {...register('value')} /> 
+          <span className="radioBtn"><input type="text" name="customValue" onChange={handleInputChange} /> €</span>
         </label>
       </div>
       <div className="button-group">
