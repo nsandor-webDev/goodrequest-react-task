@@ -5,8 +5,8 @@ export const twoStepFormSlice = createSlice({
     initialState: {
         donateDogShelter: false,
         shelterName: "",
-        shelterID: 0,
-        value: 0,
+        shelterID: null,
+        value: "",
         firstName: "",
         lastName: "",
         email: "",

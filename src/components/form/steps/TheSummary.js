@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import axios from "axios";
 
 export const TheSummary = () => {
   let state = {...useSelector(state => state)}
@@ -9,15 +10,33 @@ export const TheSummary = () => {
   const type = useSelector((state) => state.donateDogShelter)
   const shelterName = useSelector((state) => state.shelterName)
   const value = useSelector((state) => state.value)
-  const firstName = useSelector((state) => state.firstName) + " " + useSelector((state) => state.firstName)
-  const lastName = useSelector((state) => state.lastName) + " " + useSelector((state) => state.lastName)
+  const firstName = useSelector((state) => state.firstName)
+  const lastName = useSelector((state) => state.lastName)
   const fullName = firstName + " " + lastName
   const email = useSelector((state) => state.email)
   const phone = useSelector((state) => state.phone)
+  const headers = {
+    'content-type': 'application/json'
+ }
   
 
   const onSubmit = () => {
-    alert("ok !")
+    console.log(state)
+    axios.post('https://frontend-assignment-api.goodrequest.com/api/v1/shelters/contribute',
+      {
+        "shelterID": state.shelterID,
+        "value": state.value,
+        "firstName": state.firstName,
+        "lastName": state.lastName,
+        "email": state.email,
+        "phone": state.phone
+      }, headers
+    )
+    .then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
   }
 
 
