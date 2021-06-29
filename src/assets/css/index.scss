@@ -195,10 +195,11 @@ h1 {
 
 // Select donation amount / set custom amount
 .chooseAmount {
+  position: relative;
   display: flex;
   justify-content: flex-start;
   justify-content: space-between;
-  margin-bottom: 4.25em;
+  padding-bottom: 2em;
   label {
     position: relative;
     -webkit-user-select: none;
@@ -265,6 +266,7 @@ h1 {
 
 // Submit button - next / prev  step
 .button-group {
+  margin-top: 4em;
   width: 100%;
   .back-btn, button {
     font-family: 'Public Sans', sans-serif;
@@ -314,6 +316,7 @@ h1 {
     font-weight: 400;
     appearance: none;
     padding: 2.085em 1.5em 1em 1.5em;
+    margin-top: .5em;
     margin-bottom: 1.875em;
     width: 100%;
     color: #000;
@@ -330,9 +333,9 @@ h1 {
     border: .185em solid #CD8B65;
   }
 
-  span {
+  span.title {
     position: absolute;
-    top: 1em;
+    top: 1.375em;
     left: 1.5em;
     font-family: 'Public Sans', sans-serif;
     font-size: 1em;
@@ -356,6 +359,7 @@ h1 {
     display: flex;
     align-items: center;
     margin-top: 3em;
+    padding-bottom: 2em;
     position: relative;
     cursor: pointer;
     -webkit-user-select: none;
@@ -465,10 +469,24 @@ footer {
 }
 
 /* Change autocomplete styles in WebKit */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-  box-shadow: 0 0 0px 1000px #fff inset;
-  transition: background-color 5000s ease-in-out 0s;
+form {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    box-shadow: 0 0 0px 1000px #fff inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+.err-message {
+  font-size: 0.825em!important;
+  position: absolute!important;
+  bottom: .725em!important;
+  left: .5em!important;
+  color: red!important;
+  &.check {
+    bottom: 1.785em!important;
+    left: 4.5em!important;
+  }
 }

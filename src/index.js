@@ -11,9 +11,9 @@ import './assets/css/index.scss';
 import Background from './assets/img/bgdog.png'
 
 // components
-import {StepOne} from './components/form/steps/StepOne';
-import {StepTwo} from './components/form/steps/StepTwo';
-import {TheSummary} from './components/form/steps/TheSummary';
+import {StepOne} from './components/form/StepOne';
+import {StepTwo} from './components/form/StepTwo';
+import {TheSummary} from './components/form/TheSummary';
 import {TheFooter} from './components/TheFooter'
 
 ReactDOM.render(
