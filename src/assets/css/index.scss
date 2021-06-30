@@ -490,3 +490,11 @@ form {
     left: 4.5em!important;
   }
 }
+
+button:disabled,
+button[disabled],
+button:disabled:hover,
+button[disabled]:hover{
+  background: #9F9F9F;
+  cursor: default;
+}
