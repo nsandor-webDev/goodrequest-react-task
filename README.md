@@ -63,9 +63,16 @@ Nemusíte si z Figmy exportovať assety ako logá, ikonky alebo obrázky - môž
 *  Validácia vstupov v druhom kroku a ásledne validácia v celom formulári
 *  Dynamická schéma validácie 
 *  Predvoľba tel. čísla + úprava pre výstupný JSON
+*  Notification - Success message 200 from API
 
 **Chyby a nedostatky**
 *  Validácia cez react hook form a YUP nie je zrejme top riešenie, nakoľko vždy treba kliknúť mimo inputu (skúšal som aj mód onBlur, onChange aj all)
 *  Pre maličkosti sú vytvorené issues (nakoľko je to public projekt, jeden záujemca vyriešil jednoduché CSS na autofill)
 
+**Ostatné informácie**
+*  styled-components som si pozrel, vyzerá to byť fajn na väčšiu aplikáciu, ale v tomto zadaní som ich nevyužil
+*  Ikonky som stiahol z figmy, prerobil, dorobil, prípadne stiahol z free zdroja. Socials som dal tiež svg, pre 2 ikonky nepoužijem celý fontawesome
+*  Na začiatok som používal čisto JS. S typescriptom som robil v angular projektoch, avak som si chcel vyskúšať v Reacte javascript. Mám vpláne toto prerobiť to TS.
+*  Optimalizáciu som neriešil. Zameral som sa najmä na redux a funkcionalitu. CSS ešte budem  zjednodušovať
 
+Ďakujem za skvelé zadanie, veľa som sa naučil (nakoľko som mal bisics of basics z ReactJS). Budem rád, ak si zadanie pozorne prezriete a poviete svoj názor aj napriek tomu, že pozícia je už zreje obsadená / vyhliadnutá pre iného. Pri osobnom pohovore vám poviem moje aktuálne stanovisko k pracovnej ponuke. Avšak ma vážne zaujíma názor programátora na zadanie.
