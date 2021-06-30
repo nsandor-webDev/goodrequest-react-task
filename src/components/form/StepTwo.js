@@ -2,7 +2,11 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
-import { setEmail, setFirstName, setPhone, setLastName } from '../../features/formSlice'
+import { setEmail, setFirstName, setPhone, setLastName, toggleCountry } from '../../features/formSlice'
+
+//assets
+import SVK from '../../assets/icons/svk.svg'
+import CZ from '../../assets/icons/cz.svg'
 
 // form validation
 import * as Yup from 'yup';
@@ -24,6 +28,7 @@ export const StepTwo= () => {
   const lastName = useSelector(state => state.lastName)
   const email = useSelector(state => state.email)
   const phone = useSelector(state => state.phone)
+  const country = useSelector(state => state.country)
   const { register, handleSubmit, formState: { errors, isValid } } = useForm({ 
         defaultValues: { firstName, lastName, email, phone }, 
         resolver: yupResolver(schema) ,
@@ -73,7 +78,10 @@ export const StepTwo= () => {
           </label>
           <label> 
             <span className="title">Telefónne číslo </span> 
-            <input type="text" id="phone" name="phone" {...register('phone')} placeholder="+421"/>
+            <input type="text" id="phone" name="phone" {...register('phone')} placeholder={country} className="country"/>
+            <div className="flags" onClick={() => dispatch(toggleCountry())}>
+              {country === "+420" ? <img src={CZ} alt=""/> : <img src={SVK} alt="" />}
+            </div>
             {errors.phone && (
                 <span className="err-message" >
                  {errors.phone.message}

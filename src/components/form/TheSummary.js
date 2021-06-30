@@ -16,9 +16,11 @@ export const TheSummary = () => {
   // Whole state
   let state = {...useSelector(state => state)}
   // JSON format - POST Request
+  state.shelterID = parseInt(state.shelterID)
+  state.phone = state.country.substring(1) + state.phone
   delete state.donateDogShelter
   delete state.shelterName
-  state.shelterID = parseInt(state.shelterID)
+  delete state.country
   // Render data from store
   const type = useSelector((state) => state.donateDogShelter)
   const shelterName = useSelector((state) => state.shelterName)
@@ -27,7 +29,7 @@ export const TheSummary = () => {
   const lastName = useSelector((state) => state.lastName)
   const fullName = firstName + " " + lastName
   const email = useSelector((state) => state.email)
-  const phone = useSelector((state) => state.phone)
+  const phone =  useSelector((state) => state.country) + useSelector((state) => state.phone)
 
   const terms = useSelector(state => state.terms)
   const { register, handleSubmit, formState: { errors, isValid } } = useForm({ 
@@ -41,7 +43,7 @@ export const TheSummary = () => {
      state
     )
     .then((response) => {
-      console.log(response);
+      console.log(response.status);
     }, (error) => {
       console.log(error);
     });

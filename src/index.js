@@ -11,6 +11,7 @@ import './assets/css/index.scss';
 import Background from './assets/img/bgdog.png'
 
 // components
+import {TheTopBar} from './components/TheTopBar'
 import {StepOne} from './components/form/StepOne';
 import {StepTwo} from './components/form/StepTwo';
 import {TheSummary} from './components/form/TheSummary';
@@ -20,6 +21,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
     <Router>
+    <TheTopBar/>
       <div className="wrapper">
         <main>
           <div className="form">

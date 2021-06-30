@@ -20,6 +20,11 @@ const schema = Yup.object().shape({
   value: Yup.string().min(1,"Minimálna čiastka je 1€ !").required("Je potrebné vybrať čiastku !")
 })
 
+const schema_req = Yup.object().shape({
+  value: Yup.string().min(1,"Minimálna čiastka je 1€ !").required("Je potrebné vybrať čiastku !"),
+  shelterName: Yup.string().required("Je potrebné vybrať útulok !")
+})
+
 export function StepOne() {
 
   const [users, setUsers] = useState([]);
@@ -42,8 +47,8 @@ export function StepOne() {
   const value = useSelector(state => state.value)
   const { register, handleSubmit, formState: { errors, isValid } } = useForm({ 
     defaultValues: { donateDogShelter, shelterName, value},
-    resolver: yupResolver(schema) ,
-    mode: "onBlur"
+    resolver: donateDogShelter ? yupResolver(schema_req) : yupResolver(schema) ,
+    mode: "onChange"
   })
     
   // On custom amoount label click - set custom radio option checked
@@ -56,6 +61,7 @@ export function StepOne() {
   // get value from text field and set to radio button
   const handleInputChange = e => {
     document.getElementById('customInput').value = e.target.value
+    document.getElementById('customInput').checked = true
   };
 
   const handleChange = (e) => {
@@ -129,6 +135,11 @@ export function StepOne() {
           {users.map(user => <option value={user.name} key={user.id} data-key={user.id}>{user.name}</option>)}
         </select> 
         <span className="arrow"></span>
+        {errors.dogShelter && (
+                <span className="err-message" >
+                  {errors.dogShelter.message}
+                </span>
+        )} 
       </div>
       {/* Choose amount / set amount */}
       <h2 className="subTitle">Suma, ktorou chcete prispieť</h2>
@@ -160,7 +171,7 @@ export function StepOne() {
         {/* Set custom value */}
         <label onClick={handleLabelClick}>
           <input type="radio" name="value" id="customInput"  {...register('value')} /> 
-          <span className="radioBtn"><input type="text" name="customValue" onChange={handleInputChange} {...register('value')}/> €</span>
+          <span className="radioBtn"><input type="text" name="customValue" onChange={handleInputChange}/> €</span>
         </label>
         {errors.lastName && (
                 <span className="err-message" >
