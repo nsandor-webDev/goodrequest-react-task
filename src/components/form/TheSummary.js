@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom'
 import axios from "axios";
 import {useForm} from 'react-hook-form'
 
+// notifications
+import { ToastContainer, toast, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 // form validation
 import * as Yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup'
@@ -36,21 +40,26 @@ export const TheSummary = () => {
     defaultValues: { terms }, 
     resolver: yupResolver(schema),
     mode: "all"
-})
+  })
 
   const onSubmit = () => {
     axios.post('https://frontend-assignment-api.goodrequest.com/api/v1/shelters/contribute',
      state
     )
     .then((response) => {
-      console.log(response.status);
+      if(response.status === 200) {
+        toast.success("ĎAKUJEME! Požiadavka bola úspešne odoslaná :)", {
+          position: toast.POSITION.TOP_CENTER
+        });
+        console.log(response)
+      }
     }, (error) => {
       console.log(error);
     });
   }
-
   return (
     <div>
+      <ToastContainer draggable={false} transition={Zoom} autoClose={3000}/>
      <div className="pagination">
        <span></span>
        <span></span>
