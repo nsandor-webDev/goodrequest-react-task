@@ -49,3 +49,23 @@ Nemusíte si z Figmy exportovať assety ako logá, ikonky alebo obrázky - môž
 **Ak by ste mali hocijaké otázky alebo ste sa niekde zasekli:**
 
 * Kedykoľvek napíšte otázky alebo nás požiadajte o pomoc na peter.reguli@goodrequest.com - radi vám poradíme ;)
+
+# Postup vypracovania:
+*  Multi-step form s použitím redux (store, výpis JSON dát) - každý step len 1 input
+*  Pridanie ostatných inputov (okrem voľby typu podpory)
+*  CSS aj funkcionalita voľby podpory
+*  Postupná implementácia CSS štýlov + vytvorenie pätičky 
+*  Horný pagination pridaný jednoduchým spôsobom (2. možnosť je použiť linkovanie a nastavenie active)
+*  Implmenetácia výstupu GET požiadavky od API (Problém s dokumentáciou, overte si typy jednotlivých vstupov)
+*  Upravený výstupný JSON pre validnú požiadavku na API
+*  Implementovaná POST požiadavka
+*  Chybové hlášky natvrdo + CSS a vytvorenie topbaru, hlavičky webu ktorá na prvej stránke chýba - neviem účel - či ide o zobrazenie na základe zvoleného útulku alebo je to len v 2. a 3. kroku fomrmulára)
+*  Validácia vstupov v druhom kroku a ásledne validácia v celom formulári
+*  Dynamická schéma validácie 
+*  Predvoľba tel. čísla + úprava pre výstupný JSON
+
+**Chyby a nedostatky**
+*  Validácia cez react hook form a YUP nie je zrejme top riešenie, nakoľko vždy treba kliknúť mimo inputu (skúšal som aj mód onBlur, onChange aj all)
+*  Pre maličkosti sú vytvorené issues (nakoľko je to public projekt, jeden záujemca vyriešil jednoduché CSS na autofill)
+
+
