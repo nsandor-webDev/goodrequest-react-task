@@ -15,7 +15,8 @@ import {yupResolver} from '@hookform/resolvers/yup'
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const schema = Yup.object().shape({
-  lastName: Yup.string().required("Tento údaj je povinný!"),
+  firstName: Yup.string().trim().transform(value => value === '' ? undefined : value).min(2,"Dĺžka musí byť viac ako 2 znaky!").max(30,"Dĺžka nemôže presahovať 30 znakov !"),
+  lastName: Yup.string().min(2,"Dĺžka musí byť viac ako 2 znaky!").max(30,"Dĺžka nemôže presahovať 30 znakov !").required("Tento údaj je povinný!"),
   email: Yup.string().email("Nesprávny formát e-mailovej adresy!").required("Tento údaj je povinný!"),
   phone: Yup.string().matches(phoneRegExp, 'Nesprávny formát čísla').required("Tento údaj je povinný!")
 })
@@ -57,6 +58,11 @@ export const StepTwo= () => {
           <label> 
             <span className="title">Meno</span>  
             <input type="text" id="firstName" name="firstName" {...register('firstName')} placeholder="Zadajte Vaše meno"/>
+            {errors.firstName && (
+                <span className="err-message" >
+                  {errors.firstName.message}
+                </span>
+              )}
           </label>
           <label> 
             <span className="title">Priezvisko</span>  
