@@ -75,4 +75,6 @@ Nemusíte si z Figmy exportovať assety ako logá, ikonky alebo obrázky - môž
 *  Na začiatok som používal čisto JS. S typescriptom som robil v angular projektoch, avak som si chcel vyskúšať v Reacte javascript. Mám vpláne toto prerobiť to TS.
 *  Optimalizáciu som neriešil. Zameral som sa najmä na redux a funkcionalitu. CSS ešte budem  zjednodušovať
 
+**Čistý programovací čas: cca 11-12 hodín**
+
 Ďakujem za skvelé zadanie, veľa som sa naučil (nakoľko som mal bisics of basics z ReactJS). Budem rád, ak si zadanie pozorne prezriete a poviete svoj názor aj napriek tomu, že pozícia je už zreje obsadená / vyhliadnutá pre iného. Pri osobnom pohovore vám poviem moje aktuálne stanovisko k pracovnej ponuke. Avšak ma vážne zaujíma názor programátora na zadanie.
